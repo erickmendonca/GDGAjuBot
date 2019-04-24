@@ -143,6 +143,7 @@ class TestGDGAjuBot(unittest.TestCase):
         bot, resources, message = MockTeleBot(), MockResources(), MockMessage(id=0xB00B)
         g_bot = GDGAjuBot(self.config, bot, resources)
         g_bot.about(message)
+        raise Exception()
         self._assert_about(bot, message)
 
     def _assert_send_welcome(self, bot, message):
