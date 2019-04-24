@@ -41,11 +41,16 @@ mergeMethod: merge
 # is not being automatically merged.
 blockingLabels:
 - blocked
+- wip
+- don't merge
+- do not merge
 
 # Whenever required labels are configured, pull requests will only be automatically merged whenever
 # all of these labels are attached to a pull request.
 requiredLabels:
-- merge
+- ready to merge
 
 # Automatic merges will be blocked if there is a match between the regular expression and title
 blockingTitleRegex: '\bwip\b'
+
+reportStatus: true
