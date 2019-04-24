@@ -8,4 +8,4 @@ links:
   link1: "url_1"
   link2: "url_2"
 custom_responses:
-  "/custom_1": "This is a custom bot command."
+  "/custom_1": "You can create custom commands with static messages on your config file."
