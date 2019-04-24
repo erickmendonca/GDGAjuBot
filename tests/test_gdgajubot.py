@@ -34,28 +34,28 @@ class MockResources(mock.NonCallableMock):
         })
 
     EVENTS = [
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229313880/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229313880/',
          'name': 'Hackeando sua Carreira #Hangout',
          'time': datetime.fromtimestamp(1459378800, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229623381/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229623381/',
          'name': 'Android Jam 2: Talks Dia 2',
          'time': datetime.fromtimestamp(1459612800, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/mwnsrlyvgbjb/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/mwnsrlyvgbjb/',
          'name': 'Coding Dojo',
          'time': datetime.fromtimestamp(1459980000, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229591464/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229591464/',
          'name': 'O Caminho para uma Arquitetura Elegante #Hangout',
          'time': datetime.fromtimestamp(1460160000, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229770309/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229770309/',
          'name': 'Android Jam 2: #Curso Dia 2',
          'time': datetime.fromtimestamp(1460217600, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/mwnsrlyvhbgb/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/mwnsrlyvhbgb/',
          'name': 'Coding Dojo',
          'time': datetime.fromtimestamp(1462399200, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229951204/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229951204/',
          'name': 'Google I/O Extended',
          'time': datetime.fromtimestamp(1463587200, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229951264/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229951264/',
          'name': 'Google IO Extended 2016',
          'time': datetime.fromtimestamp(1463608800, AJU_TZ)},
     ]
@@ -161,11 +161,11 @@ class TestGDGAjuBot(unittest.TestCase):
 
     def _assert_list_upcoming_events(self, bot, message):
         self._assert_mockbot(bot)
-        r = ("[Hackeando sua Carreira #Hangout](http://www.meetup.com/GDG-Aracaju/events/229313880/): 30/03 20h\n"
-             "[Android Jam 2: Talks Dia 2](http://www.meetup.com/GDG-Aracaju/events/229623381/): 02/04 13h\n"
-             "[Coding Dojo](http://www.meetup.com/GDG-Aracaju/events/mwnsrlyvgbjb/): 06/04 19h\n"
-             "[O Caminho para uma Arquitetura Elegante #Hangout](http://www.meetup.com/GDG-Aracaju/events/229591464/): 08/04 21h\n"
-             "[Android Jam 2: #Curso Dia 2](http://www.meetup.com/GDG-Aracaju/events/229770309/): 09/04 13h")
+        r = ("[Hackeando sua Carreira #Hangout](https://www.meetup.com/GDG-Aracaju/events/229313880/): 30/03 20h\n"
+             "[Android Jam 2: Talks Dia 2](https://www.meetup.com/GDG-Aracaju/events/229623381/): 02/04 13h\n"
+             "[Coding Dojo](https://www.meetup.com/GDG-Aracaju/events/mwnsrlyvgbjb/): 06/04 19h\n"
+             "[O Caminho para uma Arquitetura Elegante #Hangout](https://www.meetup.com/GDG-Aracaju/events/229591464/): 08/04 21h\n"
+             "[Android Jam 2: #Curso Dia 2](https://www.meetup.com/GDG-Aracaju/events/229770309/): 09/04 13h")
         bot.send_message.assert_called_with(message.chat_id, r, parse_mode="Markdown",
                                             disable_web_page_preview=True, reply_to_message_id=message.message_id)
 
