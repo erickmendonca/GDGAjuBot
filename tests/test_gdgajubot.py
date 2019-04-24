@@ -161,11 +161,11 @@ class TestGDGAjuBot(unittest.TestCase):
 
     def _assert_list_upcoming_events(self, bot, message):
         self._assert_mockbot(bot)
-        r = ("[Hackeando sua Carreira #Hangout](http://www.meetup.com/GDG-Aracaju/events/229313880/): 30/03 20h\n"
-             "[Android Jam 2: Talks Dia 2](http://www.meetup.com/GDG-Aracaju/events/229623381/): 02/04 13h\n"
-             "[Coding Dojo](http://www.meetup.com/GDG-Aracaju/events/mwnsrlyvgbjb/): 06/04 19h\n"
-             "[O Caminho para uma Arquitetura Elegante #Hangout](http://www.meetup.com/GDG-Aracaju/events/229591464/): 08/04 21h\n"
-             "[Android Jam 2: #Curso Dia 2](http://www.meetup.com/GDG-Aracaju/events/229770309/): 09/04 13h")
+        r = ("[Hackeando sua Carreira #Hangout](https://www.meetup.com/GDG-Aracaju/events/229313880/): 30/03 20h\n"
+             "[Android Jam 2: Talks Dia 2](https://www.meetup.com/GDG-Aracaju/events/229623381/): 02/04 13h\n"
+             "[Coding Dojo](https://www.meetup.com/GDG-Aracaju/events/mwnsrlyvgbjb/): 06/04 19h\n"
+             "[O Caminho para uma Arquitetura Elegante #Hangout](https://www.meetup.com/GDG-Aracaju/events/229591464/): 08/04 21h\n"
+             "[Android Jam 2: #Curso Dia 2](https://www.meetup.com/GDG-Aracaju/events/229770309/): 09/04 13h")
         bot.send_message.assert_called_with(message.chat_id, r, parse_mode="Markdown",
                                             disable_web_page_preview=True, reply_to_message_id=message.message_id)
 
