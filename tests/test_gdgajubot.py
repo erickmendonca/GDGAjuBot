@@ -34,28 +34,28 @@ class MockResources(mock.NonCallableMock):
         })
 
     EVENTS = [
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229313880/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229313880/',
          'name': 'Hackeando sua Carreira #Hangout',
          'time': datetime.fromtimestamp(1459378800, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229623381/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229623381/',
          'name': 'Android Jam 2: Talks Dia 2',
          'time': datetime.fromtimestamp(1459612800, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/mwnsrlyvgbjb/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/mwnsrlyvgbjb/',
          'name': 'Coding Dojo',
          'time': datetime.fromtimestamp(1459980000, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229591464/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229591464/',
          'name': 'O Caminho para uma Arquitetura Elegante #Hangout',
          'time': datetime.fromtimestamp(1460160000, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229770309/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229770309/',
          'name': 'Android Jam 2: #Curso Dia 2',
          'time': datetime.fromtimestamp(1460217600, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/mwnsrlyvhbgb/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/mwnsrlyvhbgb/',
          'name': 'Coding Dojo',
          'time': datetime.fromtimestamp(1462399200, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229951204/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229951204/',
          'name': 'Google I/O Extended',
          'time': datetime.fromtimestamp(1463587200, AJU_TZ)},
-        {'link': 'http://www.meetup.com/GDG-Aracaju/events/229951264/',
+        {'link': 'https://www.meetup.com/GDG-Aracaju/events/229951264/',
          'name': 'Google IO Extended 2016',
          'time': datetime.fromtimestamp(1463608800, AJU_TZ)},
     ]
@@ -143,7 +143,6 @@ class TestGDGAjuBot(unittest.TestCase):
         bot, resources, message = MockTeleBot(), MockResources(), MockMessage(id=0xB00B)
         g_bot = GDGAjuBot(self.config, bot, resources)
         g_bot.about(message)
-        raise Exception()
         self._assert_about(bot, message)
 
     def _assert_send_welcome(self, bot, message):
