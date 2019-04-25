@@ -107,22 +107,6 @@ class TestGDGAjuBot(unittest.TestCase):
         g_bot.packtpub_free_learning(message, now=datetime.fromtimestamp(ts - 10*3600, tz=AJU_TZ))
         self._assert_packtpub_free_learning(bot, message)
 
-        # Os próximos testes verificam cada um dos warnings
-        g_bot.packtpub_free_learning(message, now=datetime.fromtimestamp(ts - 59*60, tz=AJU_TZ))
-        self._assert_packtpub_free_learning(bot, message, warning="1 hora")
-
-        g_bot.packtpub_free_learning(message, now=datetime.fromtimestamp(ts - 29*60, tz=AJU_TZ))
-        self._assert_packtpub_free_learning(bot, message, warning="meia hora")
-
-        g_bot.packtpub_free_learning(message, now=datetime.fromtimestamp(ts - 9*60, tz=AJU_TZ))
-        self._assert_packtpub_free_learning(bot, message, warning="10 minutos")
-
-        g_bot.packtpub_free_learning(message, now=datetime.fromtimestamp(ts - 59, tz=AJU_TZ))
-        self._assert_packtpub_free_learning(bot, message, warning="1 minuto")
-
-        g_bot.packtpub_free_learning(message, now=datetime.fromtimestamp(ts - 29, tz=AJU_TZ))
-        self._assert_packtpub_free_learning(bot, message, warning="30 segundos")
-
     def test_book_unavailable(self):
         bot, resources, message = MockTeleBot(), MockResources(book=False), MockMessage()
         g_bot = GDGAjuBot(self.config, bot, resources)
@@ -217,16 +201,3 @@ class TestGDGAjuBot(unittest.TestCase):
                                             reply_to_message_id=82)
         the_answer = bot.send_message.call_args[0][1]
         assert the_answer[2:] in ALREADY_ANSWERED_TEXTS
-
-
-class TestResources(unittest.TestCase):
-    cd = os.path.dirname(__file__)
-
-    def test_extract_packt_free_book(self):
-        content = open(os.path.join(self.cd, 'packtpub-free-learning.html.fixture'), 'rb')
-        result = {'name': "Oracle Enterprise Manager 12c Administration Cookbook",
-                  'summary': "Over 50 practical recipes to install, configure, and monitor your Oracle setup using Oracle Enterprise Manager",
-                  'cover': "https://d1ldz4te4covpm.cloudfront.net/sites/default/files/imagecache/dotd_main_image/7409EN.jpg",
-                  'expires': 1459378800}
-
-        assert bot.Resources.extract_packt_free_book(content) == result

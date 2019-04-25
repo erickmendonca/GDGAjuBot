@@ -9,3 +9,4 @@ dist/
 .env
 .vscode/
 *.sqlite
+.pytest_cache/

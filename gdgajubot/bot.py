@@ -380,10 +380,7 @@ class GDGAjuBot:
         if now is None:
             now = datetime.datetime.now(tz=AJU_TZ)
 
-        book, response, left = self.__get_book(now)
-        if left is not None:
-            warning = "⌛️ Menos de %s!" % TIME_LEFT[left]
-            response += warning
+        book, response = self.__get_book(now)
 
         cover = book['cover'] if book else None
 
@@ -400,16 +397,8 @@ class GDGAjuBot:
             state.dump()
 
     def __get_book(self, now):
-        # Faz duas tentativas para obter o livro do dia, por questões de possível cache antigo.
-        for _ in range(2):
+        try:
             book = self.resources.get_packt_free_book()
-            if book is None:
-                continue
-
-            delta = datetime.datetime.fromtimestamp(book.expires, tz=AJU_TZ) - now
-            delta = delta.total_seconds()
-            if delta < 0:
-                continue
 
             summary = textwrap.shorten(book.summary, 150, placeholder=r' \[...]')
             response = (
@@ -418,23 +407,15 @@ class GDGAjuBot:
                 "🔎 %s\n"
             ) % (book.name, Resources.BOOK_URL, summary)
 
-            for left in TIME_LEFT:
-                if delta <= left:
-                    return book, response, left
-            else:
-                left = None
-
-            break
-
-        # As tentativas falharam...
-        else:
+            return book, response
+        except Exception:
+            # As tentativas falharam...
             Resources.cache.invalidate(Resources.get_packt_free_book, "get_packt_free_book")
             book = None
             response = "Parece que não tem um livro grátis hoje 😡\n\n" \
                        "Se acha que é um erro meu, veja com seus próprios olhos em " + Resources.BOOK_URL
-            left = None
 
-        return book, response, left
+        return book, response
 
     def send_text_photo(self, message, text, picture=None, reply_to=False, **kwargs):
         if reply_to:
