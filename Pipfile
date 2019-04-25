@@ -12,10 +12,11 @@ psycopg2-binary = ">=2.7.4,<2.8.0"
 python-telegram-bot = ">=10.0.1,<10.1.0"
 pyyaml = "==3.12"
 requests = ">=2.18.4,<2.19.0"
-"e1839a8" = {path = ".", editable = true}
+e1839a8 = {editable = true,path = "."}
 
 [dev-packages]
 pytest = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.6"
